@@ -40,7 +40,7 @@ Below is the overarching dataflow and decoupling pipeline of the **X-Gen** frame
 Clone the repository and create a conda environment:
 
 ```bash
-git clone [https://github.com/your-username/X-Gen.git](https://github.com/your-username/X-Gen.git)
+git clone https://github.com/uakhan17/X-Gen.git
 cd X-Gen
 
 # Create and activate environment
@@ -48,7 +48,8 @@ conda create -n xgen python=3.8 -y
 conda activate xgen
 
 # Install dependencies
-pip install -r requirements.txt
+conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.6 -c pytorch -c nvidia
+pip install transformers scipy opencv-python
 ```
 
 ---
@@ -56,34 +57,15 @@ pip install -r requirements.txt
 ## 📊 Data Preparation
 
 ### Step 1: Download Official IU X-Ray Images
-1. Download the official image dataset directly from the [NIH IU X-Ray Dataset Repository](https://openi.nlm.nih.gov/).
-2. Extract all images and place them inside the `data/iu_xray/images/` directory:
-
-```text
-X-Gen/
-└── data/
-    └── iu_xray/
-        └── images/
-            ├── CXR1_1_IM-0001-1001.png
-            ├── CXR1_1_IM-0001-2001.png
-            └── ...
-```
+1. Download the official image dataset directly from https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university.
+2. We have provided augmented IU X-ray reports rewritten in three different styles and the original ones in * **`data/iu_xray_aug3.json`**.
 
 ### Step 2: LLM-Driven Report Augmentation
-To generate augmented report variants using OpenAI's API (GPT-4/GPT-3.5), run the provided augmentation script:
+To generate augmented report variants using OpenAI's API, run the provided augmentation script:
 
 ```bash
-python augment_llm.py \
-    --openai_api_key "YOUR_OPENAI_API_KEY" \
-    --input_json data/iu_xray/annotation.json \
-    --output_json data/final_aug_4.json \
-    --aug_factor 4
+python chatgpt_submission_public.py \
 ```
-
-### Step 3: Prepared Final Dataset
-For quick reproduction, we provide our final augmented dataset directly in the repository:
-* **`data/final_aug_4.json`**: Contains paired clinical report annotations along with $4\times$ LLM-augmented stylistic variants utilized in our experiments.
-
 ---
 
 ## 🏋️ Training & Evaluation
@@ -92,26 +74,8 @@ To train the **R2Gen + cVAE Decoupled Training** architecture on the IU X-ray da
 
 ```bash
 # Train the X-Gen model with decoupled training
-python main.py \
-    --image_dir data/iu_xray/images \
-    --annotation data/final_aug_4.json \
-    --dataset iu_xray \
-    --model_name r2gen_cvae \
-    --epochs 100 \
-    --batch_size 16 \
-    --lr 1e-4
+bash run_iu_xray.sh
 ```
-
-To evaluate a pre-trained checkpoint on the test set:
-
-```bash
-python test.py \
-    --image_dir data/iu_xray/images \
-    --annotation data/final_aug_4.json \
-    --load checkpoints/xgen_iu_xray_best.pth
-```
-
----
 
 ## 📝 Citation
 
@@ -121,12 +85,10 @@ If you find **X-Gen** useful for your research or applications, please cite our 
 @inproceedings{xgen2025dicta,
   title     = {X-Gen: Enhancing Radiology Report Generation via LLM-Driven Data Augmentation and Decoupled Training},
   author    = {Your Name and Co-authors},
-  booktitle = {Digital Image Computing: Techniques and Applications (DICTA)},
-  year      = {2025},
-  note      = {Oral Presentation}
+  booktitle = {2025 International Conference on Digital Image Computing: Techniques and Applications (DICTA)},
+  year      = {2025}
 }
 ```
-
 ---
 
 ## 🙏 Acknowledgements
