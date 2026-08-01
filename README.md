@@ -58,13 +58,13 @@ pip install transformers scipy opencv-python
 
 ### Step 1: Download Official IU X-Ray Images
 1. Download the official image dataset directly from https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university.
-2. We have provided augmented IU X-ray reports rewritten in three different styles and the original ones in * **`data/iu_xray_aug3.json`**.
+2. We have provided augmented IU X-ray reports rewritten in three different styles and the original ones in **`data/iu_xray_aug3.json`**.
 
 ### Step 2: LLM-Driven Report Augmentation
 To generate augmented report variants using OpenAI's API, run the provided augmentation script:
 
 ```bash
-python chatgpt_submission_public.py \
+python chatgpt_submission_public.py
 ```
 ---
 
@@ -84,7 +84,7 @@ If you find **X-Gen** useful for your research or applications, please cite our 
 ```bibtex
 @inproceedings{xgen2025dicta,
   title     = {X-Gen: Enhancing Radiology Report Generation via LLM-Driven Data Augmentation and Decoupled Training},
-  author    = {Your Name and Co-authors},
+  author    = {Chaohan Wang and Qi Chen and Yutong Xie and Qi Wu},
   booktitle = {2025 International Conference on Digital Image Computing: Techniques and Applications (DICTA)},
   year      = {2025}
 }
