@@ -84,7 +84,7 @@ If you find **X-Gen** useful for your research or applications, please cite our 
 ```bibtex
 @inproceedings{xgen2025dicta,
   title     = {X-Gen: Enhancing Radiology Report Generation via LLM-Driven Data Augmentation and Decoupled Training},
-  author    = {Chaohan Wang and Qi Chen and Yutong Xie and Qi Wu},
+  author    = {Wang, Chaohan and Chen, Qi and Xie, Yutong and Wu, Qi},
   booktitle = {2025 International Conference on Digital Image Computing: Techniques and Applications (DICTA)},
   year      = {2025}
 }
