@@ -74,7 +74,7 @@ while start_index < len(train):
         time.sleep(30)
 
 pbar.close()
-with open('iu_xray_aug.json', "w") as f:
+with open('iu_xray_aug3.json', "w") as f:
     json.dump(augmented,f)
 print("Finished.")
    
