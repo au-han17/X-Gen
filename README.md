@@ -8,7 +8,7 @@
 
 Official PyTorch implementation of the **DICTA 2025 Oral Presentation**:  
 **"X-Gen: Enhancing Radiology Report Generation via LLM-Driven Data Augmentation and Decoupled Training"**
-
+[📄 Read the Full Paper (PDF)](./assets/DICTA_Proceedings_xgen.pdf)
 > **Note:** This repository currently focuses on the implementation of the **IU X-ray** dataset using **R2Gen** as the baseline report generation branch.
 
 ---
